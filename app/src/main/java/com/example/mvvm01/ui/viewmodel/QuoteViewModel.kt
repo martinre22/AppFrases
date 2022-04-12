@@ -7,18 +7,21 @@ import com.example.mvvm01.data.model.QuoteModel
 import com.example.mvvm01.data.model.QuoteProvider
 import com.example.mvvm01.domain.GetQuotesUseCase
 import com.example.mvvm01.domain.GetRandomQuoteUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 
-class QuoteViewModel : ViewModel() {
+import javax.inject.Inject
+
+@HiltViewModel
+class QuoteViewModel @Inject constructor(
+    private val getQuotesUseCase: GetQuotesUseCase,
+    val getRandomQuoteUseCase: GetRandomQuoteUseCase)
+    : ViewModel() {
 
     val quoteModel = MutableLiveData<QuoteModel>()
-    var getQuotesUseCase = GetQuotesUseCase()
     val isLoading = MutableLiveData<Boolean>()
 
-    val getRandomQuoteUseCase = GetRandomQuoteUseCase()
-
     fun onCreate() {
-        //nos permite crear una coroutine que se controla automaticamente
         viewModelScope.launch {
             isLoading.postValue(true)
             val result = getQuotesUseCase()
@@ -28,6 +31,8 @@ class QuoteViewModel : ViewModel() {
             }
         }
     }
+
+    
     fun randomQuote(){
         isLoading.postValue(true)
         val quote = getRandomQuoteUseCase()

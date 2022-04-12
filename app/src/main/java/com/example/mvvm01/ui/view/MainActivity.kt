@@ -7,12 +7,13 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import com.example.mvvm01.databinding.ActivityMainBinding
 import com.example.mvvm01.ui.viewmodel.QuoteViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private val quoteViewModel : QuoteViewModel by viewModels()
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
