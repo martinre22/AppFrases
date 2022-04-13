@@ -1,4 +1,4 @@
-# AppNotes
+# AppFrases
 App de prueba con arquitectura MVVM  
 
 Android-Kotlin  
