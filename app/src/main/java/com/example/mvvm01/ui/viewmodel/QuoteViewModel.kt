@@ -14,7 +14,7 @@ import javax.inject.Inject
 @HiltViewModel
 class QuoteViewModel @Inject constructor(
     private val getQuotesUseCase: GetQuotesUseCase,
-    val getRandomQuoteUseCase: GetRandomQuoteUseCase)
+    private val getRandomQuoteUseCase: GetRandomQuoteUseCase)
     : ViewModel() {
 
     val quoteModel = MutableLiveData<Quote>()
